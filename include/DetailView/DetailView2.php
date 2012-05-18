@@ -99,9 +99,40 @@ class DetailView2 extends EditView
         	   die();
         	}
             require_once("modules/$this->module/metadata/detailviewdefs.php");
+            
         }
-
-        $this->defs = $viewdefs[$this->module][$this->view];
+        /*-------------Customize------------------*/
+        if($this->module=='A1_Report')
+        {
+        	/*//connect db
+	        $tdb=mysql_connect('192.168.1.7','root','goldjoy.it') or die('Error while connecting to database');
+	        mysql_select_db('goldjoy_scrm',$tdb);
+	        mysql_query('SET NAMES UTF8',$tdb);
+	        
+	        //fire
+	        echo '<div id="fromphp" style="display:none">';
+	        echo $_REQUEST['record'];
+	        $r=mysql_query("SELECT * FROM A1_company",$tdb);
+	        echo mysql_error($tdb);
+	        var_dump(mysql_num_rows($r));
+			echo '</div>';
+			mysql_close($tdb);*/
+        	echo '<div id="fromphp" style="display:none">';
+        	
+			//$a=file_get_contents("http://srvgj05:83/public/exportcsv.php?html=t&id=".$_REQUEST['record']);
+			//var_dump($a);
+        	$curl = curl_init();
+        	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        	curl_setopt($curl, CURLOPT_URL, "http://192.168.1.7:83/public/exportcsv.php?html=t&id=".$_REQUEST['record']);
+        	$result = curl_exec($curl);
+        	echo $result;
+        	curl_close($curl);
+        	echo '</div>';
+        	echo "<script>document.getElementById('DEFAULT').innerHTML=document.getElementById('DEFAULT').innerHTML+'<img src=\"/themes/Sugar5/images/Dropdown.gif\"><a href=\"/public/exportcsv.php?id=".$_REQUEST['record']."\" target=\"_blank\">Download EXCEL Report HERE</a><h4>Preview:</h4>'+document.getElementById('fromphp').innerHTML+'".$more."';</script>";
+		}
+		/*-------------Customize------------------*/
+		
+		$this->defs = $viewdefs[$this->module][$this->view];
     }
 
 }

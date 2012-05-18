@@ -260,6 +260,12 @@ class DetailView extends ListView {
 
         $html_text = "";
         $pre_html_text = "";
+        /*---------------------------------
+        $html_text.=$_REQUEST['module'];
+        if($_REQUEST['module']=='A1_Report')
+        	$html_text.="<center><img src='../../themes/Sugar5/images/Dropdown.gif'><a href='exportcsv.php?id=".$_REQUEST['record']."' target='_blank'>Download EXCEL Report HERE</a></center>";
+        /*---------------------------------*/
+        
 		$pre_html_text .= "<tr class='pagination'>\n";
 		$pre_html_text .= "<td COLSPAN=\"20\">\n";
         $pre_html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td style=\"text-align: left\" >&nbsp;".$audit_link."</td>\n";

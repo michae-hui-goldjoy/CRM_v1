@@ -97,7 +97,6 @@ SUGAR.util.doWhen(function(){
 {{sugar_action_menu id="detail_header_action_menu" buttons=$detail_header_buttons class="fancymenu" }}
 
 </div>
-
 </td>
 
 

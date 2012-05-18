@@ -37,6 +37,7 @@
 *}
 {{include file=$headerTpl}}
 {sugar_include include=$includes}
+
 <div id="{{$module}}_detailview_tabs"
 {{if $useTabs}}
 class="yui-navset detailview_tabs"
@@ -167,6 +168,8 @@ class="yui-navset detailview_tabs"
 {{/if}}
 </div>
 {if $panelFieldCount == 0 && !$useTabs}}
+
+
 
 <script>document.getElementById("{{$label}}").style.display='none';</script>
 {/if}
