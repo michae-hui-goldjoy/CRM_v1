@@ -76,8 +76,8 @@ elseif($type=='voter')
 		$out.="<table style='boder:1px' cellpadding=0 cellspacing=0><tr>";
 		foreach(explode(",",$field) as $v)
 			if($field!='first_name')
-				$out.="<th>".voterfieldlabel($v)."</th>";
-		$out.="<th>COMPANY</th></tr>";
+				$out.="<th style='border:1px solid'>".voterfieldlabel($v)."</th>";
+		$out.="<th style='border:1px solid'>COMPANY</th></tr>";
 		while($rr=mysql_fetch_assoc($r))
 		{
 			$r2=mysql_query("SELECT a.name FROM a1_company a, a1_company_a1_voter_c b WHERE a.id=b.a1_company_a1_votera1_company_ida AND b.a1_company_a1_votera1_voter_idb='".$rr['id']."'");
@@ -88,7 +88,7 @@ elseif($type=='voter')
 			unset($rr['id']);
 			$rr['assigned_user_id']=$r3['first_name']." ".$r3['last_name'];
 			$rr['votetype']=votelabel($rr['votetype']);
-			$out.="<tr><td>".implode("</td><td>",$rr)."</td><td>".$r2['name']."</td></tr>"."\n";
+			$out.="<tr><td style='border:1px solid'>".implode("</td><td style='border:1px solid'>",$rr)."</td><td style='border:1px solid'>".$r2['name']."</td></tr>"."\n";
 		}
 		$out.="</table>";
 	}
@@ -134,11 +134,11 @@ elseif($type=='followup')
 				$aun=mysql_query("SELECT first_name,last_name FROM users WHERE id='".$llog['created_by']."'");
 				$aun=mysql_fetch_assoc($aun);
 				$aun=$aun['first_name']." ".$aun['last_name'];
-				$out.="<tr><th>SUBJECT</th><th>DESCRIPTION</th><th>TIME CREATED</th><th>CREATED BY</th></tr>";
+				$out.="<tr><th style='border:1px solid'>SUBJECT</th><th style='border:1px solid'>DESCRIPTION</th><th style='border:1px solid'>TIME CREATED</th><th style='border:1px solid'>CREATED BY</th></tr>";
 			}
 			
 			//get from foreach
-			$out.="<tr><td>".$llog['name']."</td><td>".$llog['description']."</td><td>".$llog['logtime']."</td><td>".$aun."</tr>"."\n";
+			$out.="<tr><td style='border:1px solid'>".$llog['name']."</td><td style='border:1px solid'>".$llog['description']."</td><td style='border:1px solid'>".$llog['logtime']."</td><td style='border:1px solid'>".$aun."</tr>"."\n";
 		}
 		$out.="</table>";
 	}
